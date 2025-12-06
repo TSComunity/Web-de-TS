@@ -1,78 +1,135 @@
 import type { Application } from '@/types/applications'
+import applicationsBanner from '@/assets/banners/applicationsBanner.png'
 
 export const staffApplication: Application = {
   id: "staff",
   name: "Staff",
-  intro: `
-¡Hola! Gracias por querer unirte al staff. 
-Por favor responde con sinceridad y completa todas las preguntas obligatorias.
-`,
-  questions: [
+  banner: {
+    url: applicationsBanner.src,
+    alt: "Banner de postulaciones de TS"
+  },
+  sections: [
     {
-      label: "Nombre completo",
-      type: "short",
-      required: true,
-      placeholder: "Tu nombre aquí",
-      maxLength: 50
+      name: "Información de Usuario",
+      questions: [
+        {
+          label: "¿ID de usuario? ( Discord )",
+          aside: "A continuación te dejamos adjuntado un [enlace](https://support.discord.com/hc/es/articles/206346498--D%C3%B3nde-puedo-encontrar-mi-ID-de-usuario-servidor-mensaje) donde puedes ver como obtener el id de tu cuenta de Discord.",
+          type: "short",
+          required: true,
+        },
+        {
+          label: "¿Edad?",
+          aside: "Procura proporcionar tú edad real.",
+          type: "short",
+          required: true
+        },
+        {
+          label: "¿Región?",
+          aside: "Europa, America, Asia, África, Oceanía, y Antartida.",
+          type: "short",
+          required: true
+        },
+        {
+          label: "¿Disponibilidad horaria?",
+          aside: "Tiempo para dedicar a TS Community Brawl.",
+          type: "long",
+          required: true
+        }
+      ]
     },
     {
-      label: "Edad",
-      type: "short",
-      required: true,
-      placeholder: "Ej: 18"
+      name: "Habilidades y Experiencia",
+      questions: [
+        {
+          label: "¿Por qué deseas postularte como Staff?",
+          type: "long",
+          required: true
+        },
+        {
+          label: "¿Cuentas con experiencia como Staff en otras comunidades de Discord?",
+          type: "select",
+          options: [
+            "Sí",
+            "No"
+          ],
+          required: true
+        },
+        {
+          label: "Háblanos sobre ella: nombre de cada servidor, tú papel en ellos (rol) y la cantidad de miembros de cada uno.",
+          type: "long",
+          aside: "Si no cuentas con experiencia siendo Staff en otros servidores de Discord, no es necesario que respondas a esta pregunta y no por ellos significa que vayas a ser rechazado.",
+          required: false
+        },
+        {
+          label: "¿Según tu criterio que es ser un buen Staff?",
+          type: "long",
+          required: true
+        },
+        {
+          label: "¿Cuales crees que son las funciones de cada rango del Staff?",
+          type: "long",
+          required: true,
+          aside: "Owner, Co-Owner, Administrador, Supervisor, Instructor, Moderador."
+        }
+      ]
     },
     {
-      label: "¿Tienes experiencia previa como staff? Si es así, detalla.",
-      type: "long",
-      required: true,
-      maxLength: 500
-    },
-    {
-      label: "Días disponibles para moderar",
-      type: "multiselect",
-      required: true,
-      options: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
-    },
-    {
-      label: "Motivación para unirte al staff",
-      type: "long",
-      required: true,
-      maxLength: 300
+      name: "Casos Prácticos de Moderación",
+      questions: [
+        {
+          label: "¿Que harías si un miembro de TS Comunity Brawl te insulta?",
+          type: "select",
+          required: true,
+          options: [
+            "Baneo Permamente",
+            "Muteo Permamente",
+            "Aislamiento Permamente",
+            "Warn",
+            "Aviso verbal sin penalización",
+            "Other"
+          ]
+        },
+        {
+          label: "Justifica tu respuesta anterior",
+          aside: "Si no ves necesaria esta pregunta, no la contestes.",
+          type: "short",
+          required: false
+        },
+        {
+          label: "¿Que harías si un miembro envía un enlace a su servidor de Discord en un canal publico de TS Community?",
+          type: "select",
+          required: true,
+          options: [
+            "Baneo Permamente",
+            "Muteo Permamente",
+            "Aislamiento Permamente",
+            "Warn",
+            "Aviso verbal sin penalización",
+            "Other"
+          ]
+        },
+        {
+          label: "Justifica tu respuesta anterior",
+          aside: "Si no ves necesaria esta pregunta, no la contestes.",
+          type: "long",
+          required: false
+        },
+        {
+          label: "¿Que harías si ves a un alto rango del Staff abusando de su poder?",
+          type: "long",
+          required: true
+        },
+        {
+          label: "¿Cuales crees que son buenas practicas a la hora de moderar un servidor?",
+          type: "long",
+          required: true
+        }
+      ]
     }
   ]
 }
 
-export const developerApplication: Application = {
-  id: "developer",
-  name: "Desarrollador",
-  intro: `
-¡Bienvenido a la postulación para Developer!
-Buscamos personas con experiencia en programación, automatización o bots.
-Cuéntanos qué puedes aportar al equipo.
-`
-}
-
-export const designerApplication: Application = {
-  id: "designer",
-  name: "Diseñador",
-  intro: `
-Gracias por tu interés en unirte como Designer.
-Queremos conocer tu estilo, tu experiencia y qué te inspira a colaborar.
-`
-}
-
-export const editorApplication: Application = {
-  id: "editor",
-  name: "Editor",
-  intro: `
-¡Hola! Nos alegra que quieras aplicar como Editor.
-Cuéntanos sobre tu experiencia editando y tu motivación.
-`
-}
-
 export default [
-  staffApplication,
-  developerApplication,
-  designerApplication,
-  editorApplication
+  staffApplication
 ]

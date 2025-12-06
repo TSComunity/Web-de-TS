@@ -3,16 +3,23 @@ export type QuestionType = "short" | "long" | "select" | "multiselect"
 export interface Question {
   label: string
   type: QuestionType
+  aside?: string
   required?: boolean
-  placeholder?: string
   options?: string[]
   maxLength?: number
+}
+
+export interface Section {
+  name: string
+  questions: Question[]
 }
 
 export interface Application {
   id: string
   name: string
-  description?: string
-  intro: string
-  questions: Question[]
+  banner: {
+    url: string
+    alt: string
+  }
+  sections: Section[]
 }
