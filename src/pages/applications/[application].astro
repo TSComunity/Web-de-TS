@@ -24,7 +24,7 @@ const application = applications.find(
   <main class="max-w-5xl mx-auto py-12 px-6 text-white relative">
 
     <div class="rounded-xl overflow-hidden shadow-xl border border-white/10 mb-12">
-      <div class="p-8" style="background: linear-gradient(120deg, var(--color-light-blue), var(--color-pink));">
+      <div class="p-8 bg-darker">
         <h1 class="text-4xl font-semibold">{application.name}</h1>
         <p class="opacity-70 mt-1">Formulario oficial de postulación</p>
       </div>
@@ -47,13 +47,13 @@ const application = applications.find(
           <div class="space-y-6">
             {section.questions.map((q) => (
               <div class="flex flex-col gap-2 bg-dark border border-white/10 p-4 rounded-lg">
-                <label class="font-medium flex items-center gap-1">
-                  {q.required && <span class="text-red-500">*</span>}
+                <label class="font-large flex items-center gap-1">
                   {q.label}
+                  {q.required && <span class="text-red-500">*</span>}
                 </label>
 
                 {q.aside && (
-                  <p class="text-sm text-gray" set:html={q.aside}></p>
+                  <p class="text-md italic" set:html={q.aside}></p>
                 )}
 
                 {q.type === "short" && (
@@ -61,6 +61,7 @@ const application = applications.find(
                     name={q.label}
                     type="text"
                     class="bg-darker border border-white/10 px-3 py-2 rounded-lg"
+                    placeholder="Tu respuesta"
                     data-required={q.required}
                   />
                 )}
@@ -69,6 +70,7 @@ const application = applications.find(
                   <textarea
                     name={q.label}
                     class="bg-darker border border-white/10 px-3 py-2 rounded-lg min-h-[120px]"
+                    placeholder="Tu respuesta"
                     data-required={q.required}
                   ></textarea>
                 )}
@@ -86,19 +88,19 @@ const application = applications.find(
               </div>
             ))}
           </div>
+          {sIndex === application.sections.length - 1 && (
+            <div class="mt-8 flex justify-end">
+              <button
+                type="button"
+                id="openModalBtn"
+                class="px-10 py-3 rounded-lg font-semibold text-lg bg-blue"
+              >
+                Enviar aplicación
+              </button>
+            </div>
+          )}
         </section>
       ))}
-
-      <div class="text-center">
-        <button
-          type="button"
-          id="openModalBtn"
-          class="px-10 py-3 rounded-lg text-black font-semibold text-lg"
-          style="background: linear-gradient(120deg, var(--color-light-blue), var(--color-pink));"
-        >
-          Enviar aplicación
-        </button>
-      </div>
     </form>
 
     <!-- MODAL -->

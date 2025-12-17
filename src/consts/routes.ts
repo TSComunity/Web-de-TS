@@ -6,8 +6,8 @@ export const routes: Routes = {
 
   applications: [
     { name: 'Staff', path: '/applications/staff' },
-    { name: 'Desarrollador', path: '/applications/developer' },
-    { name: 'Diseñador', path: '/applications/Designer' },
+    { name: 'Desarrollador', path: '/applications/dev' },
+    { name: 'Diseñador', path: '/applications/designer' },
     { name: 'Editor', path: '/applications/editor' },
     { name: 'Programa de Creadores', path: '/applications/creators-program' },
   ],

@@ -130,6 +130,72 @@ export const staffApplication: Application = {
   ]
 }
 
+export const devApplication: Application = {
+  id: "dev",
+  name: "Desarrollador",
+  banner: {
+    url: applicationsBanner.src,
+    alt: "Banner de postulaciones de TS"
+  },
+  sections: [
+    {
+      name: "temporal",
+      questions: [
+        {
+          label: "temporal?",
+          type: "short",
+          required: true
+        }
+      ]
+    }
+  ]
+}
+
+export const designerApplication: Application = {
+  id: "designer",
+  name: "Diseñador",
+  banner: {
+    url: applicationsBanner.src,
+    alt: "Banner de postulaciones de TS"
+  },
+  sections: [
+    {
+      name: "temporal",
+      questions: [
+        {
+          label: "temporal?",
+          type: "short",
+          required: true
+        }
+      ]
+    }
+  ]
+}
+
+export const editorApplication: Application = {
+  id: "editor",
+  name: "Editor",
+  banner: {
+    url: applicationsBanner.src,
+    alt: "Banner de postulaciones de TS"
+  },
+  sections: [
+    {
+      name: "temporal",
+      questions: [
+        {
+          label: "temporal?",
+          type: "short",
+          required: true
+        }
+      ]
+    }
+  ]
+}
+
 export default [
-  staffApplication
+  staffApplication,
+  devApplication,
+  designerApplication,
+  editorApplication
 ]
