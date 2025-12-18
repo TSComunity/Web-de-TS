@@ -8,7 +8,7 @@ import type { Application } from '@/types/applications'
 const { application: slug } = Astro.params
 
 export function getStaticPaths() {
-  return (routes.applications as Route[]).filter(
+  return (routes.applications.children as Route[]).filter(
     (app) => app.path !== '/applications/creators-program'
   ).map(({ path }: Route) => ({
     params: { application: path.replace('/applications/', '') }
