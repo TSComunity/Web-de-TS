@@ -27,7 +27,7 @@ const application = applications.find(
 
     <div 
       class="rounded-xl overflow-hidden border border-white/10 mb-12"
-      style={`box-shadow: 0 12px 40px ${application.color}30, 0 6px 20px ${application.color}20;`}
+      style={`box-shadow: 0 0 40px ${application.color}40, 0 0 80px ${application.color}20;`}
     >
       <div class="p-8 bg-darker">
         <div class="flex items-center gap-4">
@@ -50,7 +50,7 @@ const application = applications.find(
         {application.sections.map((section, sIndex) => (
           <section 
             class="bg-darker border border-white/10 p-6 rounded-xl"
-            style={`box-shadow: 0 4px 16px ${application.color}15;`}
+            style={`box-shadow: 0 0 20px ${application.color}25;`}
           >
             <h2 class="text-xl font-semibold mb-6 flex items-center gap-3">
               <span class="w-8 h-8 bg-dark border border-white/10 rounded-lg flex items-center justify-center">
@@ -88,7 +88,7 @@ const application = applications.find(
                       <textarea
                         id={fieldId}
                         name={q.label}
-                        class="bg-darker border border-white/10 px-3 py-2 rounded-lg min-h-[120px] resize-none overflow-hidden"
+                        class="bg-darker border border-white/10 px-3 py-2 rounded-lg min-h-[120px] resize-y"
                         placeholder="Tu respuesta"
                         data-required={q.required}
                       ></textarea>
@@ -110,27 +110,23 @@ const application = applications.find(
               })}
             </div>
             {sIndex === application.sections.length - 1 && (
-              <div class="mt-8 flex flex-col lg:flex-row items-stretch lg:items-end gap-6">
-                <!-- Google Forms Fallback -->
-                <div class="flex-1 bg-dark border border-white/10 rounded-lg p-4">
-                  <p class="text-sm opacity-70 mb-3">O completa el formulario de Google:</p>
-                  <iframe
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSeyoj46uMzH7qliXpifjIYQbdLoJKyrbGzR38eyZhOHk-Frrw/viewform?embedded=true"
-                    class="w-full h-[500px] rounded-lg border border-white/10"
-                    frameborder="0"
-                    marginheight="0"
-                    marginwidth="0"
-                  >
-                    Cargando…
-                  </iframe>
-                </div>
+              <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <!-- Google Forms Fallback Link -->
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeyoj46uMzH7qliXpifjIYQbdLoJKyrbGzR38eyZhOHk-Frrw/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sm opacity-60 hover:opacity-100 transition-opacity underline"
+                >
+                  O completa el formulario en Google Forms
+                </a>
 
                 <!-- Submit Button -->
                 <button
                   type="button"
                   id="openModalBtn"
-                  class="px-6 py-3 rounded-lg font-semibold text-lg bg-blue hover:bg-dark-blue hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 lg:self-end whitespace-nowrap"
-                  style={`box-shadow: 0 8px 24px ${application.color}40, 0 4px 12px ${application.color}20;`}
+                  class="px-6 py-3 rounded-lg font-semibold text-lg bg-blue hover:bg-dark-blue hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap"
+                  style={`box-shadow: 0 0 24px ${application.color}50, 0 0 48px ${application.color}30;`}
                 >
                   <Send class="w-5 h-5" />
                   Enviar Postulación
@@ -174,19 +170,6 @@ const application = applications.find(
         const closeBtn = document.getElementById("closeModal") as HTMLButtonElement | null
         const confirmBtn = document.getElementById("confirmSubmit") as HTMLButtonElement | null 
         const form = document.getElementById("appForm") as HTMLFormElement | null
-
-        // Auto-resize textareas
-        function autoResize(textarea: HTMLTextAreaElement) {
-          textarea.style.height = 'auto'
-          textarea.style.height = textarea.scrollHeight + 'px'
-        }
-
-        // Inicializar auto-resize para todos los textareas
-        const textareas = document.querySelectorAll('textarea')
-        textareas.forEach(textarea => {
-          autoResize(textarea as HTMLTextAreaElement)
-          textarea.addEventListener('input', () => autoResize(textarea as HTMLTextAreaElement))
-        })
 
         openBtn?.addEventListener("click", () => {
           const inputs = form?.querySelectorAll("[data-required]")
