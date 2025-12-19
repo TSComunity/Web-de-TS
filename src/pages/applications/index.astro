@@ -17,7 +17,6 @@ import type { Application } from '@/types/applications'
           class="group relative rounded-xl overflow-hidden shadow-xl border border-white/10 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
         >
           <img
-            transition:name={`application-banner-${app.id}`}
             src={app.banner.url}
             alt={app.banner.alt}
             class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
@@ -27,7 +26,6 @@ import type { Application } from '@/types/applications'
 
             <div class="relative flex items-center gap-3">
               <img
-                transition:name={`application-icon-${app.id}`}
                 src={app.icon.url}
                 alt={app.icon.alt}
                 class="w-12 h-12 rounded-lg object-contain"
