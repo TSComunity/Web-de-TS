@@ -4,7 +4,7 @@ import { routes } from '@/consts/routes.ts'
 import type { Route } from '@/types/routes.ts'
 import applications from '@/consts/applications.ts'
 import type { Application } from '@/types/applications'
-import { Send } from 'lucide-astro'
+import { Send, CircleAlert } from 'lucide-astro'
 
 const { application: slug } = Astro.params
 
@@ -25,11 +25,11 @@ const application = applications.find(
   <div class="w-full h-full" style={`background: ${application.color}`}>
     <div class="max-w-4xl mx-auto py-12 px-6 text-white">
 
-    <div transition:name="application-card" class="rounded-xl overflow-hidden border border-white/10 mb-12">
+    <div transition:name={`application-card-${application.id}`} class="rounded-xl overflow-hidden border border-white/10 mb-12">
       <div class="p-8 bg-darker">
         <div class="flex items-center gap-4">
           <img
-            transition:name="application-icon"
+            transition:name={`application-icon-${application.id}`}
             src={application.icon.url} 
             alt={application.icon.alt} 
             class="w-16 h-16 object-contain rounded-lg"
@@ -41,12 +41,12 @@ const application = applications.find(
         </div>
       </div>
 
-      <img transition:name="application-banner" src={application.banner.url} alt={application.banner.alt} class="w-full h-48 object-cover" />
+      <img transition:name={`application-banner-${application.id}`} src={application.banner.url} alt={application.banner.alt} class="w-full h-48 object-cover" />
     </div>
 
       <form id="appForm" class="space-y-12">
         {application.sections.map((section, sIndex) => (
-          <section class="bg-darker border border-white/10 p-6 rounded-xl">
+          <section class="bg-darker/85 border border-white/10 p-6 rounded-xl">
             <h2 class="text-xl font-semibold mb-6 flex items-center gap-3">
               <span class="w-8 h-8 bg-dark border border-white/10 rounded-lg flex items-center justify-center">
                 {sIndex + 1}
@@ -83,6 +83,7 @@ const application = applications.find(
                       <textarea
                         id={fieldId}
                         name={q.label}
+                        resize: none
                         class="bg-darker border border-white/10 px-3 py-2 rounded-lg min-h-[120px] resize-y"
                         placeholder="Tu respuesta"
                         data-required={q.required}
@@ -105,27 +106,25 @@ const application = applications.find(
               })}
             </div>
             {sIndex === application.sections.length - 1 && (
-              <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <!-- Google Forms Fallback Link -->
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSeyoj46uMzH7qliXpifjIYQbdLoJKyrbGzR38eyZhOHk-Frrw/viewform"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-sm opacity-60 hover:opacity-100 transition-opacity underline"
-                >
-                  O completa el formulario en Google Forms
-                </a>
+            <div class="mt-8 flex flex-col sm:flex-row sm:items-end gap-4">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeyoj46uMzH7qliXpifjIYQbdLoJKyrbGzR38eyZhOHk-Frrw/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm opacity-60 hover:opacity-100 transition-opacity underline sm:self-start sm:mt-auto"
+              >
+                O completa el formulario en Google Forms
+              </a>
 
-                <!-- Submit Button -->
-                <button
-                  type="button"
-                  id="openModalBtn"
-                  class="px-6 py-3 rounded-lg font-semibold text-lg bg-blue hover:bg-dark-blue hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap"
-                >
-                  <Send class="w-5 h-5" />
-                  Enviar Postulación
-                </button>
-              </div>
+              <button
+                type="button"
+                id="openModalBtn"
+                class="px-6 py-3 rounded-lg font-semibold text-lg bg-blue hover:bg-dark-blue hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap"
+              >
+                <Send class="w-5 h-5" />
+                Enviar Postulación
+              </button>
+            </div>
             )}
           </section>
         ))}
@@ -165,32 +164,46 @@ const application = applications.find(
         const confirmBtn = document.getElementById("confirmSubmit") as HTMLButtonElement | null 
         const form = document.getElementById("appForm") as HTMLFormElement | null
 
-        openBtn?.addEventListener("click", () => {
-          const inputs = form?.querySelectorAll("[data-required]")
-          let valid = true
-
-          inputs?.forEach(el => {
-            const input = el as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-            if (!input.value.trim()) {
-              input.classList.add("border-red-500")
-              valid = false
-            } else {
-              input.classList.remove("border-red-500")
-            }
+        if (form) {
+          const textareas = form.querySelectorAll('textarea')
+          textareas.forEach((textarea) => {
+            const minHeight = parseInt(getComputedStyle(textarea).minHeight)
+            textarea.addEventListener('input', () => {
+              textarea.style.height = 'auto'
+              textarea.style.height = Math.max(textarea.scrollHeight, minHeight) + 'px'
+            })
           })
 
-          if (valid) modal?.classList.remove("hidden")
-        })
+          const fields = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(
+            'input, textarea, select'
+          )
 
-        closeBtn?.addEventListener("click", () => {
-          modal?.classList.add("hidden")
-        })
+          fields.forEach((field) => {
+            const required = field.dataset.required === 'true'
+            if (!required) return
 
-        confirmBtn?.addEventListener("click", () => {
-          if (!form) return
-          const formData = new FormData(form)
-          console.log("Datos del formulario:", Object.fromEntries(formData))
-        })
+            const parent = field.parentElement
+            if (!parent) return
+
+            let errorMsg = parent.querySelector('.error-msg') as HTMLDivElement
+            if (!errorMsg) {
+              errorMsg = document.createElement('div')
+              errorMsg.className = 'error-msg flex items-center gap-1 text-sm mt-1 opacity-0 transition-opacity duration-200 text-red'
+              errorMsg.innerHTML = `<span class="w-4 h-4"><CircleAlert class="w-4 h-4" /></span> Este campo es obligatorio.`
+              parent.appendChild(errorMsg)
+            }
+
+            field.addEventListener('blur', () => {
+              if (!field.value.trim()) {
+                field.classList.add('border-red')
+                errorMsg.style.opacity = '1'
+              } else {
+                field.classList.remove('border-red')
+                errorMsg.style.opacity = '0'
+              }
+            })
+          })
+        }
       </script>
     </div>
   </div>

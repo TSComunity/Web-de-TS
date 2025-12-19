@@ -12,22 +12,22 @@ import type { Application } from '@/types/applications'
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {applications.map((app: Application) => (
         <a
-          transition:name="application-card"
+          transition:name={`application-card-${app.id}`}
           href={`/applications/${app.id.toLowerCase()}`}
           class="group relative rounded-xl overflow-hidden shadow-xl border border-white/10 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
         >
           <img
-            transition:name="application-banner"
+            transition:name={`application-banner-${app.id}`}
             src={app.banner.url}
             alt={app.banner.alt}
-            class="w-full h-48 object-cover transition:name="application-banner" transition-transform duration-300 group-hover:scale-110"
+            class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
           />
           <div class="absolute inset-0 flex items-end p-4">
             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent transition-opacity duration-300 group-hover:from-black/70"></div>
 
             <div class="relative flex items-center gap-3">
               <img
-                transition:name="application-icon"
+                transition:name={`application-icon-${app.id}`}
                 src={app.icon.url}
                 alt={app.icon.alt}
                 class="w-12 h-12 rounded-lg object-contain"
