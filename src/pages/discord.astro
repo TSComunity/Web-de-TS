@@ -6,11 +6,14 @@ const DISCORD_INVITE_URL = "https://discord.gg/8nu3ZdDkp7"
 ---
 
 <Layout title="Redirigiendo a Discord...">
-  <meta htto-equiv="refresh" content={`0;url=${DISCORD_INVITE_URL}`} />
+  <meta http-equiv="refresh" content={`0;url=${DISCORD_INVITE_URL}`} />
 
-  <section class="max-w-4xl mx-auto py-12 px-6 text-white bg-blue relative">
-    <img src={discord.src} alt="Logo de Discord" class="w-24 h-24 object-contain mb-6" />
-    <h1 class="text-3xl font-semibold mb-4">Redirigiendo a Discord...</h1>
-    <p class="opacity-70">Si no eres redirigido automáticamente, haz clic <a href={DISCORD_INVITE_URL} class="text-light-blue underline">aquí</a>.</p>
+  <section class="w-full h-screen mx-auto text-white bg-blue flex flex-col justify-center items-center gap-6">
+    <img src={discord.src} alt="Logo de Discord" class="w-24 h-24 object-contain" />
+    <h1 class="text-3xl font-semibold">Redirigiendo a Discord...</h1>
+    <p class="opacity-70">Si no eres redirigido automáticamente:</p>
+    <a href={DISCORD_INVITE_URL} class="bg-white text-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+      Ir a Discord
+    </a>
   </section>
 </Layout>

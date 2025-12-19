@@ -4,6 +4,7 @@ import { routes } from '@/consts/routes.ts'
 import type { Route } from '@/types/routes.ts'
 import applications from '@/consts/applications.ts'
 import type { Application } from '@/types/applications'
+import { Send } from 'lucide-astro'
 
 const { application: slug } = Astro.params
 
@@ -21,8 +22,8 @@ const application = applications.find(
 ---
 
 <Layout title={`Postulaciones a ${application.name} - TS Community`}>
-  <div class="w-full h-full"></div>
-    <div class="max-w-4xl mx-auto py-12 px-6 text-white relative">
+  <div class="w-full h-full" style={`background: ${application.color}`}>
+    <div class="max-w-4xl mx-auto py-12 px-6 text-white">
 
     <div class="rounded-xl overflow-hidden shadow-xl border border-white/10 mb-12">
       <div class="p-8 bg-darker">
@@ -107,9 +108,10 @@ const application = applications.find(
                 <button
                   type="button"
                   id="openModalBtn"
-                  class="px-10 py-3 rounded-lg font-semibold text-lg bg-blue hover:bg-dark-blue hover:scale-105 transition-transform duration-300"
+                  class="px-10 py-3 rounded-lg font-semibold text-lg bg-blue hover:bg-dark-blue hover:scale-105 transition-transform duration-300 flex items-center gap-2"
                 >
-                  Enviar aplicación
+                  <Send class="w-5 h-5" />
+                  Enviar Postulación
                 </button>
               </div>
             )}

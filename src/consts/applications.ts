@@ -159,7 +159,7 @@ export const devApplication: Application = {
       questions: [
         {
           label: "¿ID de usuario? ( Discord )",
-          aside: "A continuación te dejamos adjuntado un [enlace](https://support.discord.com/hc/es/articles/206346498--D%C3%B3nde-puedo-encontrar-mi-ID-de-usuario-servidor-mensaje) donde puedes ver como obtener el id de tu cuenta de Discord.",
+          aside: 'A continuación te dejamos adjuntado un <a href="https://support.discord.com/hc/es/articles/206346498--D%C3%B3nde-puedo-encontrar-mi-ID-de-usuario-servidor-mensaje" target="_blank" class="underline text-blue-400">enlace</a> donde puedes ver cómo obtener tu ID de Discord.',
           type: "short",
           required: true,
         },
@@ -263,7 +263,7 @@ export const designerApplication: Application = {
       questions: [
         {
           label: "¿ID de usuario? ( Discord )",
-          aside: "A continuación te dejamos adjuntado un [enlace](https://support.discord.com/hc/es/articles/206346498--D%C3%B3nde-puedo-encontrar-mi-ID-de-usuario-servidor-mensaje) donde puedes ver como obtener el id de tu cuenta de Discord.",
+          aside: 'A continuación te dejamos adjuntado un <a href="https://support.discord.com/hc/es/articles/206346498--D%C3%B3nde-puedo-encontrar-mi-ID-de-usuario-servidor-mensaje" target="_blank" class="underline text-blue-400">enlace</a> donde puedes ver cómo obtener tu ID de Discord.',
           type: "short",
           required: true,
         },
@@ -343,7 +343,7 @@ export const editorApplication: Application = {
       questions: [
         {
           label: "¿ID de usuario? ( Discord )",
-          aside: "A continuación te dejamos adjuntado un [enlace](https://support.discord.com/hc/es/articles/206346498--D%C3%B3nde-puedo-encontrar-mi-ID-de-usuario-servidor-mensaje) donde puedes ver como obtener el id de tu cuenta de Discord.",
+          aside: 'A continuación te dejamos adjuntado un <a href="https://support.discord.com/hc/es/articles/206346498--D%C3%B3nde-puedo-encontrar-mi-ID-de-usuario-servidor-mensaje" target="_blank" class="underline text-blue-400">enlace</a> donde puedes ver cómo obtener tu ID de Discord.',
           type: "short",
           required: true,
         },
