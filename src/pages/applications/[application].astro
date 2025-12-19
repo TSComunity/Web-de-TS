@@ -25,13 +25,11 @@ const application = applications.find(
   <div class="w-full h-full" style={`background: ${application.color}`}>
     <div class="max-w-4xl mx-auto py-12 px-6 text-white">
 
-    <div 
-      class="rounded-xl overflow-hidden border border-white/10 mb-12"
-      style={`box-shadow: 0 0 40px ${application.color}40, 0 0 80px ${application.color}20;`}
-    >
+    <div transition:name="application-card" class="rounded-xl overflow-hidden border border-white/10 mb-12">
       <div class="p-8 bg-darker">
         <div class="flex items-center gap-4">
-          <img 
+          <img
+            transition:name="application-icon"
             src={application.icon.url} 
             alt={application.icon.alt} 
             class="w-16 h-16 object-contain rounded-lg"
@@ -43,15 +41,12 @@ const application = applications.find(
         </div>
       </div>
 
-      <img src={application.banner.url} alt={application.banner.alt} class="w-full h-48 object-cover" />
+      <img transition:name="application-banner" src={application.banner.url} alt={application.banner.alt} class="w-full h-48 object-cover" />
     </div>
 
       <form id="appForm" class="space-y-12">
         {application.sections.map((section, sIndex) => (
-          <section 
-            class="bg-darker border border-white/10 p-6 rounded-xl"
-            style={`box-shadow: 0 0 20px ${application.color}25;`}
-          >
+          <section class="bg-darker border border-white/10 p-6 rounded-xl">
             <h2 class="text-xl font-semibold mb-6 flex items-center gap-3">
               <span class="w-8 h-8 bg-dark border border-white/10 rounded-lg flex items-center justify-center">
                 {sIndex + 1}
@@ -126,7 +121,6 @@ const application = applications.find(
                   type="button"
                   id="openModalBtn"
                   class="px-6 py-3 rounded-lg font-semibold text-lg bg-blue hover:bg-dark-blue hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap"
-                  style={`box-shadow: 0 0 24px ${application.color}50, 0 0 48px ${application.color}30;`}
                 >
                   <Send class="w-5 h-5" />
                   Enviar Postulación
