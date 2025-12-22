@@ -80,7 +80,7 @@ const application = applications.find(
                       <textarea
                         id={fieldId}
                         name={q.label}
-                        class="bg-darker border border-white/10 px-3 py-2 resize-none rounded-lg min-h-[120px] resize-y"
+                        class="bg-darker border border-white/10 px-3 py-2 resize-none rounded-lg min-h-[120px]"
                         placeholder="Tu respuesta"
                         data-required={q.required}
                       ></textarea>
@@ -90,12 +90,33 @@ const application = applications.find(
                       <select
                         id={fieldId}
                         name={q.label}
-                        class="bg-darker border border-white/10 px-3 py-2 rounded-lg"
+                        class="bg-darker border border-white/10 px-3 py-2 pr-8 rounded-lg cursor-pointer"
                         data-required={q.required}
                       >
                         <option value="">Selecciona una opción</option>
                         {q.options?.map((opt) => <option value={opt}>{opt}</option>)}
                       </select>
+                    )}
+
+                    {q.type === "multiselect" && (
+                      <div class="grid gap-2">
+                        {q.options?.map((opt) => (
+                          <input
+                            id={fieldId}
+                            type="checkbox"
+                            name={q.label}
+                            value={opt}
+                            class="hidden peer"
+                            data-required={q.required}
+                          />
+
+                          <div class="w-4 h-4 border border-white/30 rounded-sm flex items-center justify-center peer-checked:bg-white peer-checked:border-white">
+                            <div class="w-2 h-2 bg-black hidden peer-checked:block" />
+                          </div>
+
+                          <span>{opt}</span>
+                        ))}
+                      </div>
                     )}
                   </div>
                 )

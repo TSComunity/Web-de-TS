@@ -12,7 +12,7 @@ export const routes: Routes = {
       { name: 'Desarrollador', path: '/applications/dev' },
       { name: 'Diseñador', path: '/applications/designer' },
       { name: 'Editor', path: '/applications/editor' },
-      { name: 'Programa de Creadores', path: '/applications/creators-program' }
+      { name: 'Creador', path: '/applications/creator' }
     ]
   }
 }

@@ -7,10 +7,6 @@ import designer from '@/assets/img/designer.png'
 import editor from '@/assets/img/editor.png'
 import creator from '@/assets/img/creator.png'
 
-/* =========================
-   STAFF APPLICATION
-========================= */
-
 export const staffApplication: Application = {
   id: 'staff',
   name: 'Staff',
@@ -151,10 +147,6 @@ export const staffApplication: Application = {
   ]
 }
 
-/* =========================
-   DEVELOPER APPLICATION
-========================= */
-
 export const devApplication: Application = {
   id: 'dev',
   name: 'Desarrollador',
@@ -267,10 +259,6 @@ export const devApplication: Application = {
   ]
 }
 
-/* =========================
-   DESIGNER APPLICATION
-========================= */
-
 export const designerApplication: Application = {
   id: 'designer',
   name: 'Diseñador',
@@ -355,10 +343,6 @@ export const designerApplication: Application = {
   ]
 }
 
-/* =========================
-   EDITOR APPLICATION
-========================= */
-
 export const editorApplication: Application = {
   id: 'editor',
   name: 'Editor',
@@ -442,10 +426,6 @@ export const editorApplication: Application = {
     }
   ]
 }
-
-/* =========================
-   CREATOR APPLICATION
-========================= */
 
 export const creatorApplication: Application = {
   id: 'creator',
